@@ -1,0 +1,105 @@
+{% extends 'webapp/base2.html'%}
+{% block title %}Add Menu{% endblock %}
+{% block body %}
+	<div class="container">
+		<input id="tab1" type="radio" name="tabs" checked>
+  	<label for="tab1">Modify Menu</label>
+
+  	<input id="tab2" type="radio" name="tabs">
+  	<label for="tab2">Add Items</label>
+
+	<input id="tab3" type="radio" name="tabs">
+  	<label for="tab3">Delete Items</label>
+
+	<section id="content1">
+		<div class="order-top" style="border:0">
+			<p>
+				<h4>Modify Items</h4>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th></th>
+					</thead>
+				{% for x in menu %}
+					<tr>
+						<form action="" method="POST">{% csrf_token %}
+							<td>{{x.0}}</td>
+							<td><input type="number" value="{{x.1}}" name="price"/></td>
+							<td><input type="number" value="{{x.2}}" name="quantity"/></td>
+							<td>
+								<input type="hidden" value="{{x.3}}" name="menuid">
+								<input type="submit" value="Modify" name="submit" class="btn btn-success btn-lg" />
+							</td>
+						</form>
+					</tr>
+				{% endfor %}
+				</table>
+			</p>
+		</div>
+	</section>
+	<section id="content2">
+		<div class="order-top" style="border:0">
+			<p>
+				<h4>Add Item</h4>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th></th>
+					</thead>
+					<tr>
+						<form action="" method="POST">{% csrf_token %}
+						<td>
+							<select name="item" class="btn btn-primary btn-lg">
+							{% for x in items %}
+								<option value="{{x.0}}">{{x.1}}</option>
+							{% endfor %}
+							</select>
+						</td>
+						<td><input type="number" value="" name="price"/></td>
+						<td><input type="number" value="" name="quantity"/>
+						</td>
+						<td>
+							<input type="submit" value="Add" name="submit" class="btn  btn-primary btn-lg">
+						</td>
+						</form>
+					</tr>
+				</table>
+			</p>
+		</div>
+	</section>
+	<section id="content3">
+		<div class="order-top" style="border:0">
+			<p>
+				<h4>Delete Item</h4>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th></th>
+					</thead>
+				{% for x in menu %}
+					<tr>
+					<td>{{x.0}}</td>
+					<td>{{x.1}}</td>
+					<td>{{x.2}}</td>
+					<td>
+						<form action="" method="POST">{% csrf_token %}
+							<input type="hidden" value="{{x.3}}" name="menuid">
+							<input type="submit" value="Delete" name="submit" class="btn btn-danger btn-lg">
+					
+						</form>
+					</td>
+					</tr>
+				{% endfor %}
+				</table>
+			</p>
+		</div>
+	</section>
+	</div>
+
+{% endblock %}

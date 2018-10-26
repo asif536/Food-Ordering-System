@@ -1,0 +1,55 @@
+{% extends 'webapp/base.html'%}
+{% block title %}Restaurants{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+        <h1 class="text-center text-danger"><strong>Restaurants</strong></h1>
+</div>
+<br>
+<div class="container">
+    <div class="col-sm-4 col-sm-offset-3">
+      <form class="form-horizontal" role="search" method="get" action=''>
+         <div class="form-group ">
+         <div class="input-group">  
+            <input type="text" class="form-control input-lg " name="q" value="{{ request.GET.q }}" placeholder= "Search Restaurant " style="height: 40px; width: 50%; font-size: 20px;" />
+            <span class='input-group-btn'>
+             <button class='btn btn-info btn-lg'style="height:40px; font-size: 20px;" type='submit'>Search
+             </button>
+         </span>
+        </div>
+     </div>
+   </form>
+
+ </div>
+</div> 
+<br>
+<br>
+	<div class="container">
+		<div class="row">
+		{% for rest in r_object %}
+        <div class="col-xs-7 col-md-6">
+      <div class="thumbnail">
+   		   <div class="media mb-2 ml-8" style="border-radius: 10px; border-style: groove; border-width: 2px;">
+        <a href="{% url 'menu' rest.id %}" class="pull-left ">
+            <img src="{{rest.r_logo.url}}" class="img-thumbnail img-responsive " style="height: 130px; width: 130px;">
+        </a>
+        <div class="media-body pl-4">
+          <a href="{% url 'menu' rest.id %}" style="text-decoration: none !important;"><h1 class="media-heading text-info mt-1" style="height: 20px;"><strong>{{rest.rname}}</strong></h1></a>
+            <h6 class="text-secondary"><font size="2"><strong>{{rest.info}}</strong></font></h6>
+            <h4><font size="2">Min: &#x20b9; {{rest.min_ord}}</font></h4>
+          	<h5><font size="3">Status: <strong class="text-success">{{rest.status}}</strong></font></h5>
+
+        </div>
+         
+    </div>
+
+  </div>
+</div>
+
+{% endfor%}
+</div>
+</div>
+
+{% endblock %}
+
+

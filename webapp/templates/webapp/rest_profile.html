@@ -1,0 +1,76 @@
+{% extends 'webapp/base2.html'%}
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<br>
+  <div class="container col-md-8">
+    <img src="{{user.restaurant.r_logo.url}}" height="180px" width="60%">
+  </div>
+  <br>
+	<div class="container col-md-8">
+		 
+		<div class="row">
+		<div class=" col-md-11 toppad">   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h1 class="panel-title text-info "><strong>{{user.restaurant.rname}}</strong></h1>
+                          </div>
+              
+                          <div class="panel-body">
+                            <div class="row">
+                              
+                              <div class=" col-md-9 col-lg-9 "> 
+                                <table class="table table-user-information">
+                                  <tbody>
+                                  	<tr>
+                                      <td> Restaurant UserName:</td>
+                                      <td>{{user.username}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Name:</td>
+                                      <td>{{user.restaurant.rname}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                      <td>info:</td>
+                                      <td>{{user.restaurant.info}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Location:</td>
+                                      <td>{{user.restaurant.location}}</td>
+                                    </tr>
+                                     <tr>
+                                      <td>Status:</td>
+                                      <td>{{user.restaurant.status}}</td>
+                                    </tr>
+                                     <tr>
+                                      <td>Approved:</td>
+                                      <td>{{user.restaurant.approved}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Email:</td>
+                                      <td><a href="#">{{user.email}}</a></td>
+                                    </tr>
+                                
+                                  </tbody>
+                                </table>
+                                   <div class="container">
+                                <div class="row">
+                                  <div class="col">
+                                  <a class="btn btn-success btn-lg" href="{% url 'rupdate' user.id %}">Edit</a>
+                                </div>
+                                <!--<div class="col">
+                                   <a class="btn btn-success btn-lg" href="{%url 'rcreate' %}">Complete profile</a>
+                                </div>-->
+                                </div>
+                          </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+		</div>
+	</div>
+  <br>
+{% endblock%}

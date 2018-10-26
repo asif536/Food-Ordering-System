@@ -1,0 +1,36 @@
+{% extends 'webapp/base.html'%}
+{% block title %}Update restaurant profile {% endblock %}
+
+{% block body %}
+<div class="container">
+	<h2 class="text-center">{{title}}</h2>
+</div>
+<div class="container col-md-8">
+
+	    <div class="row">
+	    <div class="col-md-4 col-md-offset-2">
+		<form method="post" class="form-horizontal" enctype="multipart/form-data">
+  			{% csrf_token %}
+  			{% for field in form %}
+    			<div class="form-group">
+        			<div class="col-md-offset-2 col-sm-8">
+            		<span class="text-danger small">{{ field.errors }}</span>
+        			</div>
+        			<label class="control-label col-sm-4">{{ field.label_tag }}</label>
+        			<div class="col-sm-12">{{ field }}</div>
+    			</div>
+			{% endfor %}
+      
+
+  		<div class="form-group">
+          	<div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success btn-lg">Save</button>
+          	 </div>
+   		</div>
+		</form>
+	</div>
+</div>
+ <br>
+</div>
+
+{% endblock%}

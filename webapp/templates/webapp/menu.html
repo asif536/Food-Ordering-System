@@ -1,0 +1,102 @@
+{% extends 'webapp/base.html'%}
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-info mb-2"><font size="6"><strong>{{rname}}</strong></font></h1>
+		<p>
+		<font size="3"><b>Info : </b><a class="text-success"><strong>{{rinfo|safe}}</strong></a>
+		<br/>
+		<b>Location: </b><a class="text-success"><strong>{{rlocation}}</strong></a>
+		<br>
+		<b >Min Order:</b> <a class="text-success">&#x20b9;{{rmin}}</a>
+	</font>
+	</p>
+	</div>
+
+	<br>
+	<div class="container">
+		<input type="button" class="btn btn-success btn-lg pull-right" onclick="storearray();" value="Checkout"/>
+	</div>
+	<div class="container ">
+			<h3 class="text-danger"><font size="5"><strong>Menu</strong></font></h3>
+			<br>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item Name</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Add</th>
+					</thead>
+					{% for x in items %}
+					<tr>
+					<td>{{x.0}}</td>
+					<td>{{x.1}}</td>
+					<td>&#x20b9; {{x.2}}</td>
+					{% if x.4 == "Open" %}
+					{% if x.5 > 0 %}
+					<td>
+                  <div class="form-group" style="width:40%;">
+     
+            		<div class="input-group-btn">
+                		<button id="down" class="btn btn-default" 
+      				 onclick="if(document.querySelector('#itemno{{x.3}}').innerHTML>0){
+                	document.querySelector('#itemno{{x.3}}').innerHTML--;
+                	minuscounter('{{x.3}}');
+                	}">
+                <span class="glyphicon glyphicon-minus"></span></button>
+            </div>
+            <span id='itemno{{x.3}}'> 0 </span>
+            <div class="input-group-btn">
+                <button id="up" class="btn btn-default" 
+                onclick="
+                if(document.querySelector('#itemno{{x.3}}').innerHTML<{{x.5}}){
+                	document.querySelector('#itemno{{x.3}}').innerHTML++;
+                	pluscounter('{{x.3}}');
+                	}"><span class="glyphicon glyphicon-plus"></span></button>
+            	</div>
+        		</div>	
+					</td>
+					{% else %}
+					<td>
+						NA
+					</td>
+					{% endif %}
+					{% else %}
+					<td>
+						Closed
+					</td>
+					{% endif %}
+					</tr>
+					{% endfor %}
+				</tr>
+				</table>
+	</div>
+<br>
+<script type="text/javascript">
+	
+var cart = [];
+	function pluscounter(pk){
+		cart.push(pk);
+		console.log(cart);
+	};
+	function minuscounter(pk){
+		if (cart!=[]){
+			var removeindex = cart.indexOf(pk);
+			cart.splice(removeindex, 1);
+			}
+			console.log(cart);
+	};
+
+	function storearray(){
+		if(cart.length === 0)
+		{
+			alert('No items selected');
+			return false;
+		}
+		document.cookie = "cart="+cart+";Path=/";
+		document.cookie ="rest={{restid}};Path=/";
+		window.location = "/checkout/";
+	};
+</script>
+{% endblock %}

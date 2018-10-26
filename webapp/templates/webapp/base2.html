@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+   {% load staticfiles %}
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>{% block title %}FoodApp{% endblock title %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap.min.css'%}">
+
+  <link href="/static/webapp/css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <!--Animation-->
+  <script src="/static/webapp/js/wow.min.js"></script>
+  <link href="static/webapp/css/animate.css" rel='stylesheet' type='text-center/css' />
+
+  </head>
+  <body>
+
+    
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+   		 <div class="container-fluid">
+   		 	 <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+        <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="{% url 'index' %}"><font size="3">&nbsp; <strong>Home</strong> </font></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="{% url  'mmenu' %}"><font size="3">&nbsp;<strong>Menu </strong></font></a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link text-light" href="{% url  'orderlist' %}"><font size="3">&nbsp;<strong>Orders</strong></font></a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+        <a class="mx-auto" href="#">
+            <img  src="/static/webapp/images/logo.png" style="height: 90px;width: 170px;" alt="Home" class="rounded-circle img-responsive">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+        <ul class="navbar-nav mr-auto text-center">
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link text-light " href="{% url 'logout' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>LogOut </strong> </font></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light " href="{%url 'rprofile' %}"><font size="3"> &nbsp;<span aria-hidden="true"></span><strong>Profile</strong></font></a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-light " href="{% url 'rlogin' %}"><font size="3">&nbsp;<span aria-hidden="true"></span> <strong>LogIn</strong></font></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light " href="{% url 'rregister' %}"><font size="3">&nbsp;<span aria-hidden="true"></span> <strong>Join Us</strong></font></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+</nav>
+
+{% block body %}
+{% endblock %}
+<br>
+<br>
+<br>
+<br>
+
+<div class="footer">
+    <div class="container-fluid">
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="#"> MohdAsif</a>
+      </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript" src="{%static 'webapp/js/jquery.min.js'%}">
+	</script>
+	<script type="text/javascript" src="{%static 'webapp/js/bootstrap.min.js'%}"></script>
+<script>
+	new WOW().init();
+</script>
+<script src="/static/webapp/js/simpleCart.min.js"> </script>
+<script type="text/javascript" src="/static/webapp/js/move-top.js"></script>
+<script type="text/javascript" src="/static/webapp/js/easing.js"></script>
+</body>
+</html>

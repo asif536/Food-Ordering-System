@@ -1,0 +1,38 @@
+{% extends 'webapp/base.html'%}
+{% block title %} Cart {% endblock %}
+
+{% block body %}
+<div class="container ">
+			<br>
+			<h3 class="text-info"><strong>Order Information :</strong></h3>
+			<br>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item Name</th>
+						<th>Quantity</th>
+						<th>Price</th>
+					</thead>
+					{% for x in items %}
+							<tr><td>{{x.0}}</td><td>{{x.1}}</td><td>&#x20b9; {{x.2}}</td></tr>
+					{% endfor %}
+
+				</table>
+				<br>
+				<span><b>Total price: </b></span><span> &#x20b9; {{totalprice}}
+				</span>
+				<br>
+				<br>
+				<form action="" method="POST">
+							{% csrf_token %}
+							<span><strong>Delivery Address:</strong></span>
+							<br>
+							<br>
+							<div><input type="text" name="address" style="width:60%; height: 60px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+							<input type="submit" class="btn btn-success btn-lg" value="Order" name="submit">
+				</form>
+
+</div>
+
+{% endblock %}
