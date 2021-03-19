@@ -34,5 +34,3 @@ python manage.py runserver
 ```
 
 Thank you for visiting my repository.
-
-Note : This is just demo application.. if you want me to customize or build application as per your requirements. please email me at asif536shah@gmail.com
